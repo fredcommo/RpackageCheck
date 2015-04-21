@@ -78,6 +78,3 @@ runCheck <- function(packagePath){
     .check(f)
 }
 
-packagePath <- "/Users/fredcommo/Documents/myProjects/myRpackages/rCGH"
-runCheck(packagePath)
-
