@@ -8,7 +8,7 @@ The check includes
 
 Detected errors are reported as:
 filename
-#line error_type
+line_num error_type
 
 ###### Donwload the Rcheck.R file, or source it from Github as follow:
 
