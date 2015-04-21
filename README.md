@@ -1,5 +1,4 @@
-#### Donwload the Rcheck.R file
-#### Or source it from Github:
+###### Donwload the Rcheck.R file, or source it from Github as follow:
 
 ```r
 # Install devtools first if needed.
