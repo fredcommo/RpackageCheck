@@ -1,6 +1,6 @@
 # indentPattern <- "^(?:\\s{4})*\\s{1,3}\\S"
 
-.check <- function(fileName, pattern = "^(?:\\s{4})*\\s{1,3}\\S"){
+.check <- function(fileName, pattern = "^(?:\\s{4})*\\s{1,3}\\S|^(?:\\s{4})*\\s{1,3}$"){
     
     if(length(fileName) == 0){
         cat("No file.\n")
@@ -24,8 +24,7 @@
                 out <- TRUE
             }
         
-        else if(grepl("^ ", foo[ii]))
-            if(grepl(pattern, foo[ii])){
+        if(grepl(pattern, foo[ii])){
                 cat("** line", ii, "not indented with a multiple of 4 spaces\n")
                 out <- TRUE
             }
@@ -77,4 +76,3 @@ runCheck <- function(packagePath){
     f <- list.files(path, full.names = TRUE, pattern = ".Rnw")
     .check(f)
 }
-
