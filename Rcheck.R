@@ -3,29 +3,29 @@
 .check <- function(fileName, pattern = "^(?:\\s{4})*\\s{1,3}\\S|^(?:\\s{4})*\\s{1,3}$"){
     
     if(length(fileName) == 0){
-        cat("No file.\n")
+        message("No file.")
         return(NULL)
     }
 
-    cat("Checking", fileName, "...\n")
+    message("Checking ", gsub(".*/", "", fileName), " ...")
     foo <- readLines(fileName)
     check <- sapply(1:length(foo), function(ii){
         
         out <- NULL
         
         if(nchar(foo[ii])>80){
-            cat("** Line", ii, "> 80 char.\n")
+            message("** Line #", ii, " >80 char.")
             out <- TRUE
         }
         
         if(grepl("[\t]", foo[ii]))
             if(grepl(pattern, foo[ii])){
-                cat("** line", ii, "is indented with tab(s)\n")
+                message("** line #", ii, " is indented with tab(s).")
                 out <- TRUE
             }
         
         if(grepl(pattern, foo[ii])){
-                cat("** line", ii, "not indented with a multiple of 4 spaces\n")
+                message("** line #", ii, " not indented with a multiple of 4 spaces.")
                 out <- TRUE
             }
         
@@ -34,44 +34,44 @@
     
     check <- do.call(c, check)
     if(is.null(check))
-        cat("No error detected\n")
+        message("No error detected")
     
-    cat("\n")
+    message()
 }
 
 runCheck <- function(packagePath){
 
-    cat("############################\n")    
-    cat("Checking DESCRIPTION file...\n")
-    cat("############################\n")    
+    message("############################")    
+    message("Checking DESCRIPTION file...")
+    message("############################")    
     path <- file.path(packagePath, "DESCRIPTION")
     .check(path)
     
-    cat("############################\n")    
-    cat("Checking NAMESPACE file...\n")
-    cat("############################\n")    
+    message("############################")    
+    message("Checking NAMESPACE file...")
+    message("############################")    
     path <- file.path(packagePath, "NAMESPACE")
     .check(path)
     
-    cat("############################\n")    
-    cat("Checking R code files...\n")
-    cat("############################\n")    
+    message("############################")    
+    message("Checking R code files...")
+    message("############################")    
     path <- file.path(packagePath, "R")
     lf <- list.files(path, full.names = TRUE)
     for(f in lf)
         .check(f)
     
-    cat("############################\n")    
-    cat("Checking Rd files in man...\n")
-    cat("############################\n")    
+    message("############################")    
+    message("Checking Rd files in man...")
+    message("############################")    
     path <- file.path(packagePath, "man")
     lf <- list.files(path, full.names = TRUE)
     for(f in lf)
         .check(f)
     
-    cat("############################\n")    
-    cat("Checking Rnw files in vignettes...\n")
-    cat("############################\n")
+    message("############################")    
+    message("Checking vignette.Rnw...")
+    message("############################")
     path <- file.path(packagePath, "vignettes")
     f <- list.files(path, full.names = TRUE, pattern = ".Rnw")
     .check(f)
