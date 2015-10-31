@@ -11,6 +11,8 @@ Detected errors are reported as:
 filename
 line_num error_type
 
+Set 'saveLog = TRUE' to save the results in 'myPkg_checkFormating_log.txt'
+
 ###### Donwload the Rcheck.R file, or source it from Github as follow:
 
 ```r
