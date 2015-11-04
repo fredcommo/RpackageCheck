@@ -130,6 +130,8 @@ runCheck <- function(packagePath, saveLog = TRUE){
     f <- list.files(path, full.names = TRUE, pattern = ".Rnw")
     .check(f, logFile)
     message()
+    cat("log saved at:\n", logFile)
+    message()
 }
 # indentPattern <- "^(?:\\s{4})*\\s{1,3}\\S"
 
